@@ -1,9 +1,7 @@
 import { component$, useClientEffect$, useStore } from "@builder.io/qwik";
-import { DocumentHead, useLocation  } from "@builder.io/qwik-city";
+import { DocumentHead } from "@builder.io/qwik-city";
 
 export default component$(() => {
-	const loc = useLocation();
-
 	const state = useStore({
 		name: '',
 		price: '',
