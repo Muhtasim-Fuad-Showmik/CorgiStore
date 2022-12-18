@@ -39,8 +39,8 @@ export default component$(() => {
 	];
 
 	return (
-		<div id="products" class="min-h-screen grid place-items-center">
-			<div class="flex flex-col gap-4 flex-wrap">
+		<div id="products" class="min-h-screen grid place-items-center py-8">
+			<div class="flex flex gap-4 flex-wrap justify-center items-stretch max-w-[1400px] mx-auto">
 				{ corgis.map((obj) => {
 					return <Card {...obj} />;
 				}) }
