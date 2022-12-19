@@ -19,7 +19,7 @@ export default component$(() => {
 			}
 		}}
 		>
-			<h1>Corgitto</h1>
+			<a href="/">Corgitto</a>
 			<div class="text-xl sm:text-3xl">
 				<i class="fa-solid fa-cart-shopping"></i>
 			</div>
