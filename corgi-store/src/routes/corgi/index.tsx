@@ -28,6 +28,14 @@ export default component$(() => {
 					class="border border-slate-900 border-solid px-8 py-4 mx-auto hover:opacity-50"
 					onClick$={() => {
 						//Logic for adding corgis to the shopping cart
+						let currBasket = {
+							items: []
+						}
+						if(localStorage.getItem('corgi-basket')){
+							currBasket = JSON.parse(localStorage.getItem('corgi-basket'))
+						}
+						currBasket.items.push([state.name]);
+						localStorage.setItem('corgi-basket', JSON.stringify(currBasket));
 					}}
 				>
 					ADOPT

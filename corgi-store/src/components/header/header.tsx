@@ -1,8 +1,16 @@
-import { component$, useStore } from "@builder.io/qwik";
+import { component$, useClientEffect$, useStore } from "@builder.io/qwik";
 
 export default component$(() => {
 	const store = useStore({
 		scrolled: false,
+		numItems: 0
+	});
+
+	useClientEffect$(() => {
+		if(localStorage.getItem('corgi-basket')){
+			const numItemsInBasket = JSON.parse(localStorage.getItem('corgi-basket')).items.length;
+			store.numItems = numItemsInBasket;
+		}
 	});
 
 	return (
@@ -20,8 +28,12 @@ export default component$(() => {
 		}}
 		>
 			<a href="/">Corgitto</a>
-			<div class="text-xl sm:text-3xl">
+			{store.numItems}
+			<div class="text-xl sm:text-3xl relative">
 				<i class="fa-solid fa-cart-shopping"></i>
+				<div class="absolute -top-2 -right-2 bg-slate-900 rounded-full h-5 w-5 text-xs grid place-items-center">
+					{store.numItems}
+				</div>
 			</div>
 		</header>
 	);
