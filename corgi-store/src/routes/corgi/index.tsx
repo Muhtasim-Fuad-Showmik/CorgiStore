@@ -1,5 +1,6 @@
-import { component$, useClientEffect$, useStore } from "@builder.io/qwik";
+import { component$, useClientEffect$, useContext, useStore } from "@builder.io/qwik";
 import { DocumentHead } from "@builder.io/qwik-city";
+import { MyContext } from "~/root";
 
 export default component$(() => {
 	const state = useStore({
@@ -7,12 +8,20 @@ export default component$(() => {
 		price: '',
 		url: ''
 	});
-	
+
+	const contextState = useContext(MyContext);
+
 	useClientEffect$(() => {
 		const data = JSON.parse(localStorage.getItem('corgiData'));
 		state.name = data.name;
 		state.url = data.url;
 		state.price = data.price;
+	});
+
+	useClientEffect$(() => {
+		if(localStorage.getItem('corgi-basket')) {
+			contextState.items = JSON.parse(localStorage.getItem('corgi-basket'));
+		}
 	});
 
     return (
@@ -34,8 +43,9 @@ export default component$(() => {
 						if(localStorage.getItem('corgi-basket')){
 							currBasket = JSON.parse(localStorage.getItem('corgi-basket'))
 						}
-						currBasket.items.push([state.name]);
+						currBasket.items.push([state]);
 						localStorage.setItem('corgi-basket', JSON.stringify(currBasket));
+						contextState.items = [...contextState.items, state];
 					}}
 				>
 					ADOPT
