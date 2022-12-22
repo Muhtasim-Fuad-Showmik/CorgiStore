@@ -13,14 +13,14 @@ export default component$((props: ModalProps) => {
                 <h1 class="font-bold text-4xl">CART</h1>
                 <i onClick$={props.onClose} class="fa-solid fa-xmark cursor-pointer hover:rotate-45"></i>
             </div>
-            {props.cart > 0 ?
+            {props.cart.length > 0 ?
             <div class="bg-slate-400 flex flex-col gap-[1px]">
                 {props.cart.map((item) => {
                     return (
-                        <div class="bg-white p-4 flex items-center justify-between">
+                        <div class="bg-white p-4 flex items-center justify-betwee text-slate-900">
                             <div class="flex flex-col gap-1">
                                 <h1>{item.name}</h1>
-                                <p>{item.price}</p>
+                                <p class="text-xs">${item.price}</p>
                             </div>
                             <i class="fa-solid fa-xmark cursor-pointer"></i>
                         </div>

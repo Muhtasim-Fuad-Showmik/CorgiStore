@@ -1,11 +1,10 @@
-import { component$, useClientEffect$, useStore, useContext, $ } from "@builder.io/qwik";
+import { component$, useClientEffect$, useStore, useContext, $, useWatch$ } from "@builder.io/qwik";
 import { strictEqual } from "assert";
 import { MyContext } from "~/root";
 import Modal from "../modal/modal";
 
 export default component$(() => {
 	const contextState = useContext(MyContext);
-	const onClose = $(() => store.modal = false);
 
 	const store = useStore({
 		scrolled: false,
@@ -14,13 +13,21 @@ export default component$(() => {
 		cart: []
 	});
 
-	useClientEffect$(() => {
-		if(localStorage.getItem('corgi-basket')){
-			const currBasket = JSON.parse(localStorage.getItem('corgi-basket'));
-			const numItemsInBasket = currBasket.items.length;
-			store.numItems = numItemsInBasket;
-			store.cart = currBasket.items;
-		}
+	const onClose = $(() => store.modal = false);
+
+	// useClientEffect$(() => {
+	// 	if(localStorage.getItem('corgi-basket')){
+	// 		const currBasket = JSON.parse(localStorage.getItem('corgi-basket'));
+	// 		const numItemsInBasket = currBasket.items.length;
+	// 		store.numItems = numItemsInBasket;
+	// 		store.cart = currBasket.items;
+	// 	}
+	// });
+
+	useWatch$(({ track }) => {
+		const tempCart = track(() => contextState.items);
+		store.numItems = tempCart.length;
+		store.cart = tempCart;
 	});
 
 	return (

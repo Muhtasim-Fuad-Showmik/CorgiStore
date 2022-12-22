@@ -20,7 +20,7 @@ export default component$(() => {
 
 	useClientEffect$(() => {
 		if(localStorage.getItem('corgi-basket')) {
-			contextState.items = JSON.parse(localStorage.getItem('corgi-basket'));
+			contextState.items = JSON.parse(localStorage.getItem('corgi-basket')).items;
 		}
 	});
 
@@ -37,13 +37,11 @@ export default component$(() => {
 					class="border border-slate-900 border-solid px-8 py-4 mx-auto hover:opacity-50"
 					onClick$={() => {
 						//Logic for adding corgis to the shopping cart
-						let currBasket = {
-							items: []
-						}
+						let currBasket = { items: [] };
 						if(localStorage.getItem('corgi-basket')){
-							currBasket = JSON.parse(localStorage.getItem('corgi-basket'))
+							currBasket = JSON.parse(localStorage.getItem('corgi-basket'));
 						}
-						currBasket.items.push([state]);
+						currBasket.items.push(state);
 						localStorage.setItem('corgi-basket', JSON.stringify(currBasket));
 						contextState.items = [...contextState.items, state];
 					}}
