@@ -1,5 +1,4 @@
-import { component$, useClientEffect$, useStore, useContext, $, useWatch$ } from "@builder.io/qwik";
-import { strictEqual } from "assert";
+import { component$, useStore, useContext, $, useWatch$ } from "@builder.io/qwik";
 import { MyContext } from "~/root";
 import Modal from "../modal/modal";
 

@@ -8,7 +8,7 @@ export default component$(() => {
 	
 	useClientEffect$(() => {
 		if(localStorage.getItem('corgi-basket')) {
-			contextState.items = JSON.parse(localStorage.getItem('corgi-basket'));
+			contextState.items = [...JSON.parse(localStorage.getItem('corgi-basket')).items];
 		}
 	});
 
@@ -39,7 +39,7 @@ export const head: DocumentHead = {
     meta: [
         {
             name: "description",
-            content: "Purchase corgis",
+            content: "Purchase Corgis",
         },
     ],
 };

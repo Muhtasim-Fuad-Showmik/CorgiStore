@@ -20,7 +20,7 @@ export default component$(() => {
 
 	useClientEffect$(() => {
 		if(localStorage.getItem('corgi-basket')) {
-			contextState.items = JSON.parse(localStorage.getItem('corgi-basket')).items;
+			contextState.items = [...JSON.parse(localStorage.getItem('corgi-basket')).items];
 		}
 	});
 

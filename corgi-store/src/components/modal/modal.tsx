@@ -1,5 +1,4 @@
 import { component$ } from "@builder.io/qwik";
-import { strictEqual } from "assert";
 
 interface ModalProps {
     onClose: () => void,
